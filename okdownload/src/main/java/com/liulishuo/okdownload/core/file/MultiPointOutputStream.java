@@ -281,6 +281,8 @@ public class MultiPointOutputStream {
         if (outputStream != null) {
             outputStream.close();
             outputStreamMap.remove(blockIndex);
+            //android 10 数组越界导致，不触发回掉
+            noSyncLengthMap.remove(blockIndex);
             Util.d(TAG, "OutputStream close task[" + task.getId() + "] block[" + blockIndex + "]");
         }
     }
